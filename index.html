@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sihirli Zarf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Arka Plan Videosu -->
+    <!-- NOT: iPhone'larda çalışması için playsinline, muted ve loop şarttır -->
+    <video id="bg-video" loop playsinline muted>
+        <source src="video-linkiniz.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <!-- Arka Plan Müzik Elementi -->
+    <audio id="bg-music" loop>
+        <source src="muzik-linkiniz.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="center-box">
+        <!-- Zarf Kapsayıcısı -->
+        <div class="envelope" id="envelope">
+            
+            <!-- Üst Kapak -->
+            <div class="top"></div>
+            
+            <!-- İçindeki Mektup -->
+            <div class="letter">
+                <h2>Seni Seviyorum</h2>
+                <p>Hayatımdaki en güzel şey sensin. Her gülüşün kalbimi yeniden aşık ediyor. İyi ki varsın sevgilim...</p>
+            </div>
+
+            <!-- Kalp Butonu ve İçindeki Fotoğraf -->
+            <button id="heartBtn">
+                <img src="fotograf-linkiniz.jpg" alt="Biz">
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
