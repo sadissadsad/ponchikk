@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sihirli Zarf</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
     <!-- Arka Plan Videosu -->
-    <!-- NOT: iPhone'larda çalışması için playsinline, muted ve loop şarttır -->
-    <video id="bg-video" loop playsinline muted>
+    <video id="bg-video" loop playsinline muted autoplay>
         <source src="video_2026-05-12_21-08-30.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
@@ -40,6 +39,9 @@
         </div>
     </div>
 
-    <script src="script.js?v=5"></script>
+    <!-- Kelebeklerin uçuşacağı alan -->
+    <div class="butterflies" id="butterflyContainer"></div>
+
+    <script src="script.js?v=6"></script>
 </body>
 </html>
