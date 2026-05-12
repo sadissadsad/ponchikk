@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent; /* Mobil tıklama mavi gölgesini kaldırır */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: -2;
-  opacity: 0; /* İlk başta video gizli, müzikle beraber açılacak */
+  opacity: 0;
   transition: opacity 1.5s ease;
 }
 
@@ -44,18 +44,17 @@ body {
   align-items: center;
 }
 
-/* 4.5 cm x 2 cm Dikdörtgen Zarf Yapısı */
+/* Адаптивный конверт (сохраняет пропорции 4.5 к 2) */
 .envelope {
   position: relative;
-  width: 170px;  /* Yaklaşık 4.5 cm */
-  height: 75px;  /* Yaklaşık 2 cm */
+  width: 180px; 
+  height: 80px; 
   background: #f5d0d0;
   border-radius: 6px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  overflow: visible;
 }
 
-/* Üst Üçgen Kapak */
+/* Верхняя крышка */
 .top {
   position: absolute;
   width: 100%;
@@ -63,11 +62,11 @@ body {
   background: #ffb6c1;
   clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
-  transition: transform 1s ease;
+  transition: transform 1s ease, z-index 1s;
   z-index: 4;
 }
 
-/* Zarfın Alt Ön Kapağı */
+/* Нижняя крышка */
 .envelope::before {
   content: "";
   position: absolute;
@@ -81,7 +80,7 @@ body {
   border-radius: 0 0 6px 6px;
 }
 
-/* Zarfın Yan Ön Kapakları */
+/* Боковые крышки */
 .envelope::after {
   content: "";
   position: absolute;
@@ -95,7 +94,7 @@ body {
   border-radius: 6px;
 }
 
-/* İçinden Çıkacak Beyaz Mektup */
+/* Письмо (Изначально спрятано внутри конверта) */
 .letter {
   position: absolute;
   width: 90%;
@@ -104,49 +103,52 @@ body {
   left: 5%;
   top: 5px;
   border-radius: 8px;
-  padding: 12px;
+  padding: 15px 10px;
   text-align: center;
-  transition: transform 1.2s ease-in-out, z-index 1.2s;
-  z-index: 2;
+  transition: transform 1.2s ease-in-out, opacity 0.5s, z-index 1.2s;
+  z-index: 1;
+  opacity: 0; /* Прячем текст до клика */
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transform: translateY(0);
 }
 
 .letter h2 {
   color: #ff4081;
-  font-size: 15px;
-  margin-bottom: 5px;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .letter p {
   font-size: 11px;
   color: #333;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
-/* Kalp Şeklinde Fotoğraflı Buton */
+/* Кнопка-Сердце */
 #heartBtn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: none;
   background: #ff2d55;
   cursor: pointer;
   z-index: 10;
   clip-path: polygon(50% 15%, 65% 0, 100% 0, 100% 40%, 50% 95%, 0 40%, 0 0, 35% 0);
   animation: pulse 1.5s infinite;
-  box-shadow: 0 0 15px rgba(255,45,85,0.6);
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Kalbin İçindeki Fotoğraf */
+/* Картинка внутри сердца */
 #heartBtn img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: inherit; /* Fotoğrafı da kalp şeklinde keser */
 }
 
 @keyframes pulse {
@@ -155,18 +157,20 @@ body {
   100% { transform: translate(-50%, -50%) scale(1); }
 }
 
-/* TIKLANINCA TETİKLENEN AÇILMA AKIŞI */
+/* АНИМАЦИЯ ОТКРЫТИЯ */
 .open .top {
   transform: rotateX(180deg);
   z-index: 1;
 }
 
 .open .letter {
-  transform: translateY(85px); /* Küçük zarftan aşağı süzülme mesafesi */
+  opacity: 1;
+  transform: translateY(90px); /* Плавное скольжение вниз */
   z-index: 5;
 }
 
 .open #heartBtn {
   animation: none;
-  opacity: 0.9;
+  opacity: 0; /* Исчезает, чтобы не закрывать текст */
+  pointer-events: none;
 }
